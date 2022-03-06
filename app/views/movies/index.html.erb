@@ -1,0 +1,26 @@
+<div class='container'>
+  <h1 class='current-category'><%= params[:category] %></h1>
+</div>
+
+<% if @movies.count == 0 %>
+  <div class='container'>
+    <h2>There are no movies currently in this category</h1>
+  </div>
+<% else %>
+  <div class='container'>
+    <h6>There are available <%= @movies.count %> movie(s)</h2>
+  </div>
+
+  <% @movies.each do |movie| %>
+    <article class="card m-3 bg-dark text-white">
+      <section class="card-header">
+        <h2><%= link_to movie.title, movie_path(movie) %></h2>
+      </section>
+      <div class="card-body">
+        <h3>Rating:
+        <%# <%= movie.rating %>
+        </h3>
+      </div>
+    </article>
+  <% end %>
+<% end %>

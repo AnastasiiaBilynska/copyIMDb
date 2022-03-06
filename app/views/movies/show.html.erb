@@ -1,0 +1,19 @@
+
+<article class="card m-3 bg-dark text-white">
+  <section class="card-header">
+    <h2><%= @movie.title %></h2>
+  </section>
+  <div class="card-body">
+    <h3>Rating:
+    <%# <%= @movie.rating %>
+    </h3>
+    <h3>Category: <%= @movie.category.name %></h3>
+    <section class="card-text">
+      <p class="my-2">
+        <%= @movie.text %>
+      </p>
+    </section>
+    <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-secondary' %>
+    <%= link_to 'Delete', movie_path(@movie), data: {method: :delete, confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+  </div>
+</article>

@@ -1,0 +1,10 @@
+<h1>Edit movie</h1>
+
+<%= simple_form_for @movie, :html => { :multipart => true } do |f| %>
+  <%= f.input :title, label: 'Movie title' %>
+  <%= f.input :text, label: 'Movie text' %>
+  <%= f.select :category_id, @categories %>
+  <%# <%= f.input :rating, label: 'Movie rating' %>
+  <%# <%= f.input :category, label: 'Movie category' %> %> %>
+  <%= f.button :submit, 'Save new movie', class: 'btn btn-primary m-3' %>
+<% end %>
