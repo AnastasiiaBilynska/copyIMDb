@@ -14,3 +14,4 @@ Turbolinks.start()
 ActiveStorage.start()
 
 $(document).ready(function() { $(".dropdown-toggle").dropdown(); })
+import * as bootstrap from "bootstrap"
