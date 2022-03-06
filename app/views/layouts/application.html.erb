@@ -31,7 +31,7 @@
         <ul class="nav navbar-right d-flex m-3">
 
 		  <div class="dropdown d-flex m-3">
-            <a class="dropdown-toggle text-white" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= params[:category] || 'Category' %></a>
+            <a class="dropdown-toggle text-white" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= params[:category] || 'Category' %></a>
             <ul class="dropdown-menu bg-dark" aria-labelledby="dropdown">
 			  <% Category.all.each do |category| %>
                 <li class="<%= 'active' if params[:category] == category.name %>">
@@ -53,8 +53,6 @@
         <%= tag.div v, class: "alert alert-dark alert-#{k}", role: 'alert' %>
       <% end %>
       <%= yield %>
-
-
 
     </main>
 
