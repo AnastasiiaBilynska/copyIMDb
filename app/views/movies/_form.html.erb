@@ -2,7 +2,6 @@
   <%= f.input :title, label: 'Movie title' %>
   <%= f.input :text, label: 'Movie text' %>
   <%= select_tag(:category_id, options_for_select(@categories), :prompt => 'Select a category') %>
-  <%# <%= f.input :rating, label: 'Movie rating' %>
-  <%# <%= f.input :category, label: 'Movie category' %> %> %>
+  <%= f.file_field :preview, label: 'Movie preview' %>
   <%= f.button :submit, 'Save new movie', class: 'btn btn-primary m-3' %>
 <% end %>

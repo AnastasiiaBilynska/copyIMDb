@@ -1,19 +1,43 @@
 
 <article class="card m-3 bg-dark text-white">
-  <section class="card-header">
-    <h2><%= @movie.title %></h2>
+  <section>
+    <h2 class="text-center m-2"><%= @movie.title %></h2>
+    <div class="d-flex justify-content-center">
+      <%= image_tag @movie.preview.url, style:"height: 30rem", class: 'd-block' if @movie.preview? %>
+    </div>
   </section>
   <div class="card-body">
-    <h3>Rating:
+    <h3 class="text-center">Rating:
+    <%# <%= rating_for @movie, "original_score", star_path: '/images/', disable_after_rate: true, imdb_avg: true %> %>
     <%# <%= @movie.rating %>
     </h3>
-    <h3>Category: <%= @movie.category.name %></h3>
+    <h3 class="text-center">Category: <%= @movie.category.name %></h3>
     <section class="card-text">
-      <p class="my-2">
+      <p class="m-2 text-center">
         <%= @movie.text %>
       </p>
     </section>
-    <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-secondary' %>
-    <%= link_to 'Delete', movie_path(@movie), data: {method: :delete, confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+    <div class="d-flex justify-content-center">
+      <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-secondary m-2' %>
+      <%= link_to 'Delete', movie_path(@movie), data: {method: :delete, confirm: 'Are you sure?'}, class: 'btn btn-danger m-2' %>
+    </div>
+    <div>
+      <h3 class="m-2 text-center">Reviews</h3>
+      <div class="row">
+        <div class="small-2 large-2 columns">
+          <%= imdb_style_rating_for @movie, current_user %>
+        </div>
+        <br>
+        <div class="small-2 large-4 columns">
+          <% if current_user %>
+            Rating: <%= rating_for @movie, "rating", stars: 10 %>
+          <% end %>
+        </div>
+      </div>
+      <%= render @movie.reviews %>
+    </div>
+    <div class="d-flex justify-content-center">
+      <%= link_to 'Add review', new_movie_review_path(@movie), class: 'btn btn-secondary m-2' %>
+    </div>
   </div>
 </article>

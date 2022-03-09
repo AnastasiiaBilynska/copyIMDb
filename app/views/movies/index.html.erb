@@ -10,17 +10,19 @@
   <div class='container'>
     <h6>There are available <%= @movies.count %> movie(s)</h2>
   </div>
-
-  <% @movies.each do |movie| %>
-    <article class="card m-3 bg-dark text-white">
-      <section class="card-header">
-        <h2><%= link_to movie.title, movie_path(movie) %></h2>
-      </section>
-      <div class="card-body">
-        <h3>Rating:
-        <%# <%= movie.rating %>
-        </h3>
-      </div>
-    </article>
-  <% end %>
+  <div class="row">
+    <% @movies.each do |movie| %>
+      <article class="card m-3 bg-dark text-white">
+        <section class="card-header">
+          <div class="d-flex justify-content-center"><%= image_tag movie.preview.url, style:"height:   15rem", class: 'd-block' if movie.preview? %></div>
+          <h2 class="m-2 text-center text-white"><%= link_to movie.title, movie_path(movie), class:   "text-white" %></h2>
+        </section>
+        <div class="card-body">
+          <h3 class="m-2 text-center">Rating:
+          <%# <%= movie.rating %>
+          </h3>
+        </div>
+      </article>
+    <% end %>
+  </div>
 <% end %>
