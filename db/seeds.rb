@@ -18,3 +18,6 @@ categories = Category.create([{ name: 'Action' }, { name: 'Adventure' },
                               { name: 'Sport' }, { name: 'Superhero' },
                               { name: 'Thriller' }, { name: 'War' },
                               { name: 'Western' }])
+admin = Admin.create(email: "admin@admin.com",
+                     password: "AdminAdmin",
+                     password_confirmation: "AdminAdmin")

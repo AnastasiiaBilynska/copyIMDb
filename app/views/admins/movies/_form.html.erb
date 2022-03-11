@@ -1,4 +1,4 @@
-<%= simple_form_for @movie, :html => { :multipart => true } do |f| %>
+<%= simple_form_for(@movie, as: :movie, method: :post, url: admins_movies_path, :html => { :multipart => true }) do |f| %>
   <%= f.input :title, label: 'Movie title' %>
   <%= f.input :text, label: 'Movie text' %>
   <%= select_tag(:category_id, options_for_select(@categories), :prompt => 'Select a category') %>

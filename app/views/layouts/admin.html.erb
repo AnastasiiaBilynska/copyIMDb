@@ -20,11 +20,11 @@
         </div>
 
         <ul class="nav d-flex justify-content-around">
-          <li><%= link_to "Sign Up", new_user_registration_path, class: "m-3 text-white" %></li>
+          <li><%= link_to "Sign Up", new_admin_registration_path, class: "m-3 text-white" %></li>
             <% if user_signed_in? %>
-              <li><%= link_to "Sign Out", destroy_user_session_path, class: "m-3 text-white", method: :delete %></li>
+              <li><%= link_to "Sign Out", destroy_admin_session_path, class: "m-3 text-white", method: :delete %></li>
             <% else %>
-              <li><%= link_to "Log In", new_user_session_path, class: "m-3 text-white" %></li>
+              <li><%= link_to "Log In", new_admin_session_path, class: "m-3 text-white" %></li>
             <% end %>
         </ul>
 
@@ -41,6 +41,11 @@
               <li><%= link_to 'All', root_path, class: "link text-white" %></li>
             </ul>
           </div>
+
+          <% if admin_signed_in? %>
+            <li><%= link_to "Add movie", new_admins_movie_path, class: "d-flex m-3 text-white" %></li>
+            <li class="d-flex m-3 text-success"><em>Admin</em></li>
+          <% end %>
         </ul>
       </div>
     </nav>
