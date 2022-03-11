@@ -35,7 +35,7 @@ class Admins::MoviesController < ApplicationController
     @movie.category_id = params[:category_id]
     if @movie.update(movie_params)
       flash[:success] = "Movie has been successfully updated!"
-      redirect_to movie_path(@movie)
+      redirect_to admins_movie_path(@movie)
     else
       render 'edit'
     end
