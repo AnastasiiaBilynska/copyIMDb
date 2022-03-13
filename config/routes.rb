@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :admins
-  post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users
 
   resources :movies, only: %i[show index] do

@@ -21,13 +21,64 @@
           <h2 class="m-2 text-center text-white"><%= link_to movie.title, movie_path(movie), class:   "text-white" %></h2>
         </section>
         <div class="card-body">
-          <h3 class="m-2 text-center">Rating:
-          <%# <%= movie.rating %>
-          </h3>
+          <div>
+          <%= image_tag("mid-star.png")  %>
+          <%= movie.reviews.average(:rating).round(2) %>
+          </div>
+          <% if user_signed_in? %>
+            <div id="rating-form">
+              <label>Rating</label>
+            </div>
+            <%= link_to image_tag("star-off.png", style: 'height: 1.5rem; width: auto'), new_movie_review_path(movie),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn'}  %>
+            <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content"></div>
+              </div>
+            </div>
+          <% end %>
+
         </div>
       </article>
     <% end %>
   </div>
+
+
+
+
 <% end %>
 
 <%== pagy_bootstrap_combo_nav_js @pagy %>
+
+
+
+
+<script>
+  $('#rating-form').raty({
+	number: 10,
+    path: '/assets/',
+    scoreName: 'review[rating]'
+  });
+</script>
+<script>
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    number: 10,
+    path: '/assets/'
+  });
+
+  $('.average-review-rating').raty({
+    readOnly: true,
+    number: 10,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+
+
+  $("#modal-window").find(".modal-content").html("<%= j (render 'modal') %>");
+  $("#modal-window").modal();
+</script>

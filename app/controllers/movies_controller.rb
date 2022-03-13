@@ -1,5 +1,4 @@
 class MoviesController < ApplicationController
-  # before_action :find_movie, only: [:show]
 
   def index
     if params[:category].blank?
@@ -12,6 +11,11 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    if @movie.reviews.blank?
+      @average_review = 0
+    else
+      @average_review = @movie.reviews.average(:rating).round(2)
+    end
   end
 
   private
@@ -19,9 +23,5 @@ class MoviesController < ApplicationController
   def movie_params
     params.require(:movie).permit(:title, :text, :category_id, :preview)
   end
-
-  # def find_movie
-  #   @movie = Movie.find(params[:id])
-  # end
 
 end

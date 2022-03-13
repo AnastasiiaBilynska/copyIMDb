@@ -6,35 +6,19 @@
     </div>
   </section>
   <div class="card-body">
-    <h3 class="text-center">Rating:
-    <%# <%= rating_for @movie, "original_score", star_path: '/images/', disable_after_rate: true, imdb_avg: true %> %>
-    <%# <%= @movie.rating %>
-    </h3>
+    <h2 class="avg-rating">Average Rating: <%= @average_review %></h2>
+    <div class="average-review-rating" data-score=<%= @average_review %>>
+      <span class="number-of-reviews">Based on <%= @movie.reviews.count %> reviews  </span>
+    </div>
+
     <h3 class="text-center">Category: <%= @movie.category.name %></h3>
     <section class="card-text">
       <p class="m-2 text-center">
         <%= @movie.text %>
       </p>
     </section>
-    <% if admin_signed_in? %>
-      <div class="d-flex justify-content-center">
-        <%= link_to 'Edit', edit_admins_movie_path(@movie), class: 'btn btn-secondary m-2' %>
-        <%= link_to 'Delete', admins_movie_path(@movie), data: {method: :delete, confirm: 'Are you sure?'}, class: 'btn btn-danger m-2' %>
-      </div>
-    <% end %>
     <div>
       <h3 class="m-2 text-center">Reviews</h3>
-      <div class="row">
-        <div class="small-2 large-2 columns">
-          <%= imdb_style_rating_for @movie, current_user %>
-        </div>
-        <br>
-        <div class="small-2 large-4 columns">
-          <% if current_user %>
-            Rating: <%= rating_for @movie, "rating", stars: 10 %>
-          <% end %>
-        </div>
-      </div>
       <%= render @movie.reviews %>
     </div>
     <% if user_signed_in? %>
@@ -44,3 +28,23 @@
     <% end %>
   </div>
 </article>
+
+<script>
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    number: 10,
+    path: '/assets/'
+  });
+
+  $('.average-review-rating').raty({
+    readOnly: true,
+    number: 10,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>
