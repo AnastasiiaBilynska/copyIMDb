@@ -22,7 +22,7 @@
         </section>
         <div class="card-body">
           <%= image_tag("mid-star.png")  %>
-          <h2 class="avg-rating"><%= movie.reviews.average(:rating).round(2) %></h2>
+          <h2 class="avg-rating"><%= movie.reviews.average(:rating)&.round(2) %></h2>
           <% if user_signed_in? %>
             <%= simple_form_for(@review, method: :post, url: movie_reviews_path(movie), remote: true) do |f| %>
               <div id="rating-form">

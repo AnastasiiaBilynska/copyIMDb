@@ -18,7 +18,7 @@
       <article class="card m-3 bg-dark text-white">
         <section class="card-header">
           <div class="d-flex justify-content-center"><%= image_tag movie.preview.url, style:"height:   15rem", class: 'd-block' if movie.preview? %></div>
-          <h2 class="m-2 text-center text-white"><%= link_to movie.title, movie_path(movie), class:   "text-white" %></h2>
+          <h2 class="m-2 text-center text-white"><%= link_to movie.title, admins_movie_path(movie), class:   "text-white" %></h2>
         </section>
       </article>
     <% end %>
