@@ -20,11 +20,6 @@
           <div class="d-flex justify-content-center"><%= image_tag movie.preview.url, style:"height:   15rem", class: 'd-block' if movie.preview? %></div>
           <h2 class="m-2 text-center text-white"><%= link_to movie.title, movie_path(movie), class:   "text-white" %></h2>
         </section>
-        <div class="card-body">
-          <h3 class="m-2 text-center">Rating:
-          <%# <%= movie.rating %>
-          </h3>
-        </div>
       </article>
     <% end %>
   </div>

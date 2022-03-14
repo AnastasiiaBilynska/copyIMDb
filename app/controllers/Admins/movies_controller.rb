@@ -1,8 +1,7 @@
 module Admins
-  class MoviesController < ApplicationController
+  class MoviesController < BaseController
     before_action :find_movie, only: %i[show edit update destroy]
-    before_action :find_categories, only:  %i[new edit]
-    before_action :average_rating, only:  %i[index show]
+    before_action :find_categories, only: %i[new edit]
     layout 'admin'
 
     def index
@@ -63,12 +62,5 @@ module Admins
       @categories = Category.all.map{ |c| [c.name, c.id] }
     end
 
-    def average_rating
-      if @movie.reviews.blank?
-        @average_review = 0
-      else
-        @average_review = @movie.reviews.average(:rating).round(2)
-      end
-    end
   end
 end
