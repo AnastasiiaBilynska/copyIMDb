@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
 
   def index
+    @review = Review.new
     if params[:category].blank?
       @pagy, @movies = pagy Movie.all.order('created_at DESC')
     else

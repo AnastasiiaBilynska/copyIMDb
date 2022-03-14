@@ -21,20 +21,46 @@
           <h2 class="m-2 text-center text-white"><%= link_to movie.title, movie_path(movie), class:   "text-white" %></h2>
         </section>
         <div class="card-body">
-          <div>
           <%= image_tag("mid-star.png")  %>
-          <%= movie.reviews.average(:rating).round(2) %>
-          </div>
+          <h2 class="avg-rating"><%= movie.reviews.average(:rating).round(2) %></h2>
           <% if user_signed_in? %>
             <div id="rating-form">
               <label>Rating</label>
             </div>
-            <%= link_to image_tag("star-off.png", style: 'height: 1.5rem; width: auto'), new_movie_review_path(movie),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn'}  %>
-            <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content"></div>
-              </div>
+
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <%= image_tag("mid-star.png")%>
+            </button>
+
+
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <% if user_signed_in? %>
+                <%= simple_form_for(@review, method: :post, url: movie_reviews_path(movie)) do |f| %><div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                    <div id="rating-form">
+                      <label>Rating</label>
+                    </div>
+
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <%= f.button :submit, 'Save', class: 'btn btn-primary m-3' %>
+                  </div>
+                <% end %>
+              <% end %>
             </div>
+
+            </div>
+
+
           <% end %>
 
         </div>
@@ -79,6 +105,12 @@
   });
 
 
-  $("#modal-window").find(".modal-content").html("<%= j (render 'modal') %>");
-  $("#modal-window").modal();
+
+
+
+  var modal = new bootstrap.Modal(document.getElementById('modal'), {
+    keyboard: false
+  })
+  modal.toggle()
+
 </script>

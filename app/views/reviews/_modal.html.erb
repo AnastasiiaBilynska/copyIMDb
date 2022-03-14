@@ -1,0 +1,18 @@
+
+  <% if user_signed_in? %>
+    <%= simple_form_for(@review, method: :post, url: movie_reviews_path(movie)) do |f| %>
+      <div id="rating-form">
+        <label>Rating</label>
+      </div>
+       <%= f.button :submit, class: 'btn btn-primary m-3' %>
+     <% end %>
+  <% end %>
+
+
+<script>
+  $('#rating-form').raty({
+	number: 10,
+    path: '/assets/',
+    scoreName: 'review[rating]'
+  });
+</script>
