@@ -1,5 +1,4 @@
-module Admins
-  class MoviesController < BaseController
+  class Admins::MoviesController < ApplicationController
     before_action :find_movie, only: %i[show edit update destroy]
     before_action :find_categories, only: %i[new edit]
     layout 'admin'
@@ -63,4 +62,3 @@ module Admins
     end
 
   end
-end
