@@ -1,6 +1,6 @@
 
   <% if user_signed_in? %>
-    <%= simple_form_for(@review, method: :post, url: movie_reviews_path(movie)) do |f| %>
+    <%= simple_form_for(@review, method: :post, url: movie_reviews_path(movie),remote: true) do |f| %>
       <div id="rating-form">
         <label>Rating</label>
       </div>

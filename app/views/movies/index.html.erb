@@ -24,44 +24,14 @@
           <%= image_tag("mid-star.png")  %>
           <h2 class="avg-rating"><%= movie.reviews.average(:rating).round(2) %></h2>
           <% if user_signed_in? %>
-            <div id="rating-form">
-              <label>Rating</label>
-            </div>
-
-
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              <%= image_tag("mid-star.png")%>
-            </button>
-
-
-            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <% if user_signed_in? %>
-                <%= simple_form_for(@review, method: :post, url: movie_reviews_path(movie)) do |f| %><div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                    <div id="rating-form">
-                      <label>Rating</label>
-                    </div>
-
-
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <%= f.button :submit, 'Save', class: 'btn btn-primary m-3' %>
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-
-            </div>
-
-
+            <%= simple_form_for(@review, method: :post, url: movie_reviews_path(movie), remote: true) do |f| %>
+              <div id="rating-form">
+                <label>Rating</label>
+              </div>
+              <%= f.button :submit, 'Rate', class: 'btn btn-primary m-3' %>
+            <% end %>
           <% end %>
+
 
         </div>
       </article>
@@ -78,13 +48,7 @@
 
 
 
-<script>
-  $('#rating-form').raty({
-	number: 10,
-    path: '/assets/',
-    scoreName: 'review[rating]'
-  });
-</script>
+
 <script>
   $('.review-rating').raty({
     readOnly: true,
@@ -104,13 +68,10 @@
     }
   });
 
-
-
-
-
-  var modal = new bootstrap.Modal(document.getElementById('modal'), {
-    keyboard: false
-  })
-  modal.toggle()
+  $('#rating-form').raty({
+    number: 10,
+    path: '/assets/',
+    scoreName: 'review[rating]'
+  });
 
 </script>
