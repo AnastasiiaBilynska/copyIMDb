@@ -41,6 +41,9 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'rubocop', '~> 1.18', require: false
+  gem 'rubocop-performance', '~> 1.11', require: false
+  gem 'rubocop-rails', '~> 2.11', require: false
   gem 'spring'
 end
 
@@ -49,19 +52,24 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
+
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
+  gem 'simplecov', require: false
+  gem 'factory_bot_rails', require: false
+  gem 'faker'
   gem 'webdrivers'
-  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'sprockets-rails'
-gem 'jsbundling-rails'
-gem 'cssbundling-rails'
-gem 'simple_form'
-gem 'devise'
 gem 'carrierwave', '~> 2.0'
-gem 'ratyrate'
+gem 'cssbundling-rails'
+gem 'devise'
+gem 'jsbundling-rails'
 gem 'jquery-rails'
+gem 'sprockets-rails'
+gem 'simple_form'
+gem 'ratyrate'
 gem 'pagy'

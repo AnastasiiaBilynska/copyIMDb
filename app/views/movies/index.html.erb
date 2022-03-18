@@ -32,7 +32,6 @@
             <% end %>
           <% end %>
 
-
         </div>
       </article>
     <% end %>
@@ -50,23 +49,7 @@
 
 
 <script>
-  $('.review-rating').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    number: 10,
-    path: '/assets/'
-  });
 
-  $('.average-review-rating').raty({
-    readOnly: true,
-    number: 10,
-    path: '/assets/',
-    score: function() {
-      return $(this).attr('data-score')
-    }
-  });
 
   $('#rating-form').raty({
     number: 10,
