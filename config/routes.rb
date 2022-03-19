@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :movies do
       resources :reviews
     end
-    root 'admin/movies#index'
   end
+  
   root 'movies#index'
 end

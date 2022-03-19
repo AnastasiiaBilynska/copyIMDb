@@ -17,6 +17,7 @@ class ReviewsController < ApplicationController
 
     if @review.save
       redirect_to movie_path(@movie)
+      flash[:success] = "Review has been successfully created!"
     else
       render 'new'
     end

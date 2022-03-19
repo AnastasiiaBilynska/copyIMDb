@@ -5,7 +5,5 @@
   <%= f.input :text, label: 'Movie text' %>
   <%= f.select :category_id, options_for_select(@categories) %>
   <%= f.file_field :preview, label: 'Movie preview' %>
-  <%# <%= f.input :rating, label: 'Movie rating' %>
-  <%# <%= f.input :category, label: 'Movie category' %>
   <%= f.button :submit, 'Edit', class: 'btn btn-primary m-3' %>
 <% end %>
