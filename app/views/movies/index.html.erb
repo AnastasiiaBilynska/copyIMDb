@@ -1,8 +1,6 @@
 <div class='container'>
   <h1 class='current-category'><%= params[:category] %></h1>
 </div>
-<div id='reportalert'>
-</div>
 
 <% if @movies.count == 0 %>
   <div class='container'>
@@ -32,11 +30,11 @@
             </div>
           </div>
           <% if user_signed_in? %>
-            <%= simple_form_for(@review, method: :post, url: movie_reviews_path(movie), id: 'quick_rate', remote: true) do |f| %>
+            <%= simple_form_for(@review, method: :post, url: movie_reviews_path(movie), remote: true) do |f| %>
               <div class="rating-form">
                 <label>Rate</label>
               </div>
-              <%= f.button :submit, 'Rate', class: 'btn btn-secondary m-3' %>
+              <%= f.button :submit, 'Rate', class: 'btn btn-secondary m-3', onclick: "displayMessage()"  %>
             <% end %>
           <% end %>
 
@@ -65,4 +63,7 @@
     scoreName: 'review[rating]'
   });
 
+  function displayMessage() {
+    alert("You've just rated the movie!")
+  }
 </script>
