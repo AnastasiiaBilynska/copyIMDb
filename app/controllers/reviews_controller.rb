@@ -16,8 +16,12 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
 
     if @review.save
-      redirect_to movie_path(@movie)
-      flash[:success] = "Review has been successfully created!"
+      if request.xhr?
+        render json: { success: true }
+      else
+        redirect_to movie_path(@movie)
+        flash[:success] = "Review has been successfully created!"
+      end
     else
       render 'new'
     end

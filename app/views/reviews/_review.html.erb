@@ -1,13 +1,22 @@
-<div class="d-flex justify-content-center"></div>
-  <div class="review-rating" data-score="<%= review.rating %>"></div>
-  <p class="m-2 text-center"><%= review.comment %></p>
-</div>
 
-<% if user_signed_in? %>
-  <% if review.user_id == current_user.id %>
-    <div class="d-flex justify-content-center">
-      <%= link_to 'Edit', edit_movie_review_path(review.movie, review), class: 'btn btn-secondary m-2' %>
-      <%= link_to 'Delete', movie_review_path(review.movie, review), data: {method: :delete, confirm: 'Are you sure?'}, class: 'btn btn-danger m-2' %>
+<div class="card m-3 p-3 bg-dark text-white">
+  <p><%= review.created_at %></p>
+  <div class='row m-3'>
+    <div class="col">
+      <div class="review-rating" data-score="<%= review.rating %>"></div>
     </div>
+    <div class="col-8">
+      <p class="m-2 text-center"><%= review.comment %></p>
+    </div>
+  </div>
+
+  <% if user_signed_in? %>
+    <% if review.user_id == current_user.id %>
+      <div class="d-flex justify-content-center">
+        <%= link_to 'Edit', edit_movie_review_path(review.movie, review), class: 'btn btn-secondary m-2'%>
+        <%= link_to 'Delete', movie_review_path(review.movie, review), data: {method: :delete, confirm:   'Are you sure?'}, class: 'btn btn-danger m-2' %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+
+</div>

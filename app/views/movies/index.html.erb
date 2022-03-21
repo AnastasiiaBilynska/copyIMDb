@@ -1,6 +1,8 @@
 <div class='container'>
   <h1 class='current-category'><%= params[:category] %></h1>
 </div>
+<div id='reportalert'>
+</div>
 
 <% if @movies.count == 0 %>
   <div class='container'>
@@ -13,7 +15,7 @@
   <div class='m-3'>
     <%== pagy_bootstrap_combo_nav_js @pagy  %>
   </div>
-  <div class="row row-cols-xs-1 row-cols-xs-2 row-cols-md-3 d-flex justify-content-around">
+  <div class="row row-cols-xs-1 row-cols-md-2 row-cols-lg-3 m-3">
     <% @movies.each do |movie| %>
       <article class="card bg-dark text-white">
         <section class="card-header">
@@ -30,11 +32,11 @@
             </div>
           </div>
           <% if user_signed_in? %>
-            <%= simple_form_for(@review, method: :post, url: movie_reviews_path(movie), local: false) do |f| %>
-              <div id="rating-form">
+            <%= simple_form_for(@review, method: :post, url: movie_reviews_path(movie), id: 'quick_rate', remote: true) do |f| %>
+              <div class="rating-form">
                 <label>Rate</label>
               </div>
-              <%= f.button :submit, 'Rate', class: 'btn btn-primary m-3', remote: true %>
+              <%= f.button :submit, 'Rate', class: 'btn btn-secondary m-3' %>
             <% end %>
           <% end %>
 
@@ -58,10 +60,11 @@
 <script>
 
 
-  $('#rating-form').raty({
+  $('.rating-form').raty({
     number: 10,
     path: '/assets/',
     scoreName: 'review[rating]'
   });
 
+  
 </script>

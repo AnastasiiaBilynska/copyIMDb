@@ -1,6 +1,6 @@
   class Admins::MoviesController < ApplicationController
     before_action :find_movie, only: %i[show edit update destroy]
-    before_action :find_categories, only: %i[new edit]
+    before_action :find_categories, only: %i[edit update new create]
     layout 'admin'
 
     def index
